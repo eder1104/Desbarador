@@ -18,7 +18,6 @@ class PlantillaController extends Controller
             foreach ($archivos as $archivo) {
                 $nombre = pathinfo($archivo->getFilename(), PATHINFO_FILENAME);
 
-                // 👇 Evita incluir el index en la lista
                 if (strtolower($nombre) === 'index') {
                     continue;
                 }
@@ -33,7 +32,6 @@ class PlantillaController extends Controller
             }
         }
 
-        // Verifica que el index.blade.php exista dentro de la categoría
         $vistaIndex = "plantillas.$categoria.index";
 
         if (!view()->exists($vistaIndex)) {
