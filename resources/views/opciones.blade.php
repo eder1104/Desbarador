@@ -12,10 +12,21 @@
                     <h4 class="card-title mb-3">{{ $categoria }}</h4>
 
                     @foreach ($formatos as $formato)
-                    <a href="{{ url(strtolower($categoria) . '/' . strtolower($formato)) }}"
-                        class="btn btn-outline-primary m-1 px-4 py-2">
-                        {{ $formato }}
-                    </a>
+                       
+                        @php
+                            $rutaNombre = 'plantillas.' . strtolower($categoria) . '.' . strtolower($formato);
+                        @endphp
+
+                        @if(Route::has($rutaNombre))
+                            <a href="{{ route($rutaNombre) }}"
+                               class="btn btn-outline-primary m-1 px-4 py-2">
+                                {{ $formato }}
+                            </a>
+                        @else
+                            <span class="btn btn-outline-secondary m-1 px-4 py-2 disabled">
+                                {{ $formato }}
+                            </span>
+                        @endif
                     @endforeach
                 </div>
             </div>
